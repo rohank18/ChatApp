@@ -12,6 +12,21 @@ var io = socketIO(server);
 io.on('connection', (socket) => {
     console.log('New user connected');
 
+    // socket.emit('newEmail', {
+    //     from: 'mke@example.com',
+    //     text: 'Hey. Whats going on',
+    //     createAt: 123
+    // });
+
+    socket.emit('newMessage', {
+        from: 'romi',
+        text: 'Hey. Rocky'
+    });
+
+    socket.on('createMessage', (message) => {
+        console.log('createMessage', message);
+    })
+    
     socket.on('disconnect', () => {
         console.log('User disconnected');
     })
